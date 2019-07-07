@@ -3,4 +3,4 @@
 from pfe import pfe
 
 if __name__ == '__main__':
-    pfe.PXDemoApp().run(debug=True)
+    pfe.PFEApp().run(debug=True)
