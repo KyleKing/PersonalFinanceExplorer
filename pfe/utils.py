@@ -18,3 +18,7 @@ class TabBase:
     def createLayout(self):
         """Return the Dash layout components."""
         raise NotImplementedError('self.createLayout has not been implemented for "{}"'.format(self.NAME))
+
+    def registerCallbacks(self):
+        """Register all callbacks necessary for this tab."""
+        raise NotImplementedError('self.registerCallbacks has not been implemented for "{}"'.format(self.NAME))

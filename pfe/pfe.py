@@ -41,8 +41,12 @@ class PFEApp:
         self.TAB_LOOKUP = {_tab.NAME: _tab for _tab in self.TABS}
         self.TAB_MAP = {tab.NAME: tab.createLayout() for tab in self.TABS}
 
+        # Create application layout and navigation callback
         self._createLayout()
-        self._registerTabCB()
+        self._registerNaviCallback()
+        # Register callbacks from each tab
+        for _tab in self.TABS:
+            _tab.registerCallbacks()
 
         self.app.run_server(debug=debug, **kwargs)
 
@@ -86,8 +90,8 @@ class PFEApp:
             html.Div(id='tabs-content'),
         ])
 
-    def _registerTabCB(self):
-        """Register callback to handle tab rendering."""
+    def _registerNaviCallback(self):
+        """Register callback to handle tab rendering/navigation."""
         @self.app.callback(
             Output('tabs-content', 'children'),
             [Input('tabs-select', 'value')],
@@ -95,4 +99,3 @@ class PFEApp:
         def renderTabs(name):
             """Render tabs when switched."""
             return self.TAB_MAP[name]
-
