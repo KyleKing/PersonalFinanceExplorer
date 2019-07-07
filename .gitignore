@@ -103,5 +103,8 @@ venv.bak/
 # mypy
 .mypy_cache/
 
+# DoIt
+.doit*
+
 # Confidential Information
 .credentials.json

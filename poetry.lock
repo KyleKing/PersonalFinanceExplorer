@@ -154,19 +154,18 @@ version = "0.0.3"
 
 [package.dependencies]
 bottleneck = "^1.2"
-dash = "^1.0.0"
+dash = "^1.0"
 dash-core-components = "^1.0"
 dash-html-components = "^1.0"
-dash-table = "^4.0.0"
+dash-table = "^4.0"
 icecream = "^1.5"
-pandas = "^0.24.2"
+pandas = "^0.24"
 plotly = "^3.10"
 
 [package.source]
-reference = "45fe8072de44a553b8742837e19c0d54508710a2"
+reference = "0b09e6d0ce38dd53ce7c40fc7cec7bfb5b9cc94e"
 type = "git"
 url = "https://github.com/KyleKing/dash_charts.git"
-
 [[package]]
 category = "main"
 description = "Core component suite for Dash"
@@ -813,7 +812,7 @@ description = "Persistent/Functional/Immutable data structures"
 name = "pyrsistent"
 optional = false
 python-versions = "*"
-version = "0.15.2"
+version = "0.15.3"
 
 [package.dependencies]
 six = "*"
@@ -1174,7 +1173,7 @@ pyflakes = ["17dbeb2e3f4d772725c777fabc446d5634d1038f234e77343108ce445ea69ce0", 
 pygments = ["71e430bc85c88a430f000ac1d9b331d2407f681d6f6aec95e8bcfbc3df5b0127", "881c4c157e45f30af185c1ffe8d549d48ac9127433f2c380c24b84572ad66297"]
 pyinotify = ["9c998a5d7606ca835065cdabc013ae6c66eb9ea76a00a1e3bc6e0cfe2b4f71f4"]
 pyparsing = ["1873c03321fc118f4e9746baf201ff990ceb915f433f23b395f5580d1840cb2a", "9b6323ef4ab914af344ba97510e966d64ba91055d6b9afa6b30799340e89cc03"]
-pyrsistent = ["16692ee739d42cf5e39cef8d27649a8c1fdb7aa99887098f1460057c5eb75c3a"]
+pyrsistent = ["50cffebc87ca91b9d4be2dcc2e479272bcb466b5a0487b6c271f7ddea6917e14"]
 pytest = ["6aa9bc2f6f6504d7949e9df2a756739ca06e58ffda19b5e53c725f7b03fb4aae", "b77ae6f2d1a760760902a7676887b665c086f71e3461c64ed2a312afcedc00d6"]
 pytest-cov = ["2b097cde81a302e1047331b48cadacf23577e431b61e9c6f49a1170bbe3d3da6", "e00ea4fdde970725482f1f35630d12f074e121a23801aabf2ae154ec6bdd343a"]
 pytest-mock = ["43ce4e9dd5074993e7c021bb1c22cbb5363e612a2b5a76bc6d956775b10758b7", "5bf5771b1db93beac965a7347dc81c675ec4090cb841e49d9d34637a25c30568"]
