@@ -12,10 +12,10 @@ repository = "https://github.com/KyleKing/PersonalFinanceExplorer"
 
 [tool.poetry.dependencies]
 python = "^3.7"
+apsw-wheels = "^3.26"
 dash_charts = {git = "https://github.com/KyleKing/dash_charts.git", branch = "master"}
 plaid-python = "^3.3"
 plaidash = "^1.0"
-plotly_express = "^0.3.1"
 
 [tool.poetry.dev-dependencies]
 autopep8 = "^1.4"
