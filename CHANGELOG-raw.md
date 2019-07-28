@@ -7,6 +7,8 @@ Changelog
 
 New
 ~~~
+- Integrate Plaid Dash. [Kyle King]
+- Add DoIt tasks. [Kyle King]
 - WIP left-side tab layout. [Kyle King]
 - Basic Plaid-Dash demo page. [Kyle King]
 

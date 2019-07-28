@@ -84,7 +84,7 @@ class PlaidDashWrapper:
             #   <a class="button is-link is-rounded">Add Account with Plaid</a>
             plaidash.LoginForm(
                 id='plaid-link',
-                clientName='Personal Finance Explorer',
+                clientName='"PFE"',
                 env=self.PLAID_ENV,
                 publicKey=self.PLAID_PUBLIC_KEY,
                 product=self.PLAID_PRODUCTS,
@@ -95,14 +95,14 @@ class PlaidDashWrapper:
     def registerCallbacks(self):
         """Register callbacks necessary for this tab."""
         self._storeToken()
-        self._display()
+        self._updateAccounts()
 
     def _storeToken(self):
         """TBD."""
         @self.app.callback(Output('public-tokens', 'data'),
-                    [Input('store-button', 'n_clicks')],
-                    [State('plaid-link', 'public_token'),
-                    State('public-tokens', 'data')])
+                           [Input('store-button', 'n_clicks')],
+                           [State('plaid-link', 'public_token'),
+                            State('public-tokens', 'data')])
         def onClickStoreTokenBtn(clicks, public_token, data):
             """Read and store token to browser's memory."""
             if clicks is None:
@@ -110,66 +110,14 @@ class PlaidDashWrapper:
             self.storedTokens = data['tokens'] or []
             self.storedTokens.append(public_token)
             data = {'tokens': self.storedTokens}
+            ic(self.storedTokens)
             return data
 
-    def _display(self):
-        """Display from Memory."""
-        @self.app.callback(Output('transaction-table', 'children'),
-              [Input('public-tokens', 'modified_timestamp')],
-              [State('public-tokens', 'data')])
-        def display_output(timestamp, data):
-            if timestamp is None:
-                raise PreventUpdate()
-
-            if data is not None:
-                self.storedTokens = list(data.get('tokens'))
-                if len(self.storedTokens) > 0 and self.storedTokens[-1] is not None:
-                    public_token = self.storedTokens[-1]
-                    response = self.client.Item.public_token.exchange(public_token)
-                    access_token = response['access_token']
-                    ic("Public Token '{}' was exchanged for Access Token '{}'".format(public_token, access_token))
-
-                    start_date = '{:%Y-%m-%d}'.format(datetime.datetime.now() + datetime.timedelta(-30))
-                    end_date = '{:%Y-%m-%d}'.format(datetime.datetime.now())
-                    try:
-                        transactions_response = self.client.Transactions.get(
-                            access_token=access_token, start_date=start_date, end_date=end_date)
-                    except plaid.errors.PlaidError as e:
-                        return html.P(jsonify(format_error(e)))
-
-                    transactions = transactions_response.get('transactions')
-
-                    names = [transaction['name'] for transaction in transactions]
-                    categories = [transaction['category'] for transaction in transactions]
-                    locations = [transaction['location'] for transaction in transactions]
-                    statuses = [transaction['pending'] for transaction in transactions]
-                    amounts = [transaction['amount'] for transaction in transactions]
-                    ic(categories, locations, statuses)
-                    # Payment Method: payment_meta
-                    dates = [transaction['date'] for transaction in transactions]
-                    # trans_ids = [transaction['transaction_id'] for transaction in transactions]
-
-                    TOKEN_MEAT = []
-                    for a in range(len(self.storedTokens)):
-                        if a is not None:
-                            TOKEN_MEAT.append(html.Tr([html.Td(self.storedTokens[a]), '']))
-
-                    INFO_MEAT = []
-                    for b in range(len(transactions)):
-                        INFO_MEAT.append(html.Tr([html.Td(names[b]), html.Td(amounts[b]), html.Td(dates[b])]))
-
-                    return html.Div([
-                        html.Table([
-                            html.Thead([
-                                html.Tr([html.Th('Stored Public Tokens')]),
-                                html.Tbody([*TOKEN_MEAT]),
-                            ]),
-                            html.Table([
-                                html.Thead([
-                                    html.Tr([html.Th('Name'), html.Th('Amount'), html.Th('Date')])
-                                ]),
-                                html.Tbody([*INFO_MEAT]),
-                            ]),
-                        ]),
-                    ])
-            return 'Navigate Plaid Link to Obtain Token'
+    def _updateAccounts(self):
+        """Register with Plaid."""
+        @self.app.callback((),
+                           [Input('plaid-link', 'n_clicks')],
+                           [State('plaid-link', 'public_token')])
+        def updateAccounts(n_clicks, public_token):
+            ic(n_clicks)
+            ic(public_token)
