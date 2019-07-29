@@ -4,14 +4,13 @@ import dash_html_components as html
 import dash_table
 import pandas as pd
 from dash.dependencies import Input, Output
+from dash_charts import appUtils
 from icecream import ic
 
-from .utils import TabBase
 from .plaidWrapper import PlaidDashWrapper
 
 
-
-class TabProfile(TabBase):
+class TabProfile(appUtils.TabBase):
     """Profile Page."""
 
     NAME = 'Profile'

@@ -14,6 +14,7 @@ New
 
 Changes
 ~~~~~~~
+- Cleanup plaid display code. [Kyle King]
 - Add simple profile page. [Kyle King]
 - Prep for pfe architecture. [Kyle King]
 

@@ -1,6 +1,5 @@
 """Wrapper of Plaid-Dash."""
 
-import datetime
 import json
 import os
 
@@ -12,7 +11,6 @@ import plaid
 import plaidash
 from dash.dependencies import Input, Output, State
 from dash.exceptions import PreventUpdate
-from flask import jsonify
 from icecream import ic
 
 # # Fill in your Plaid API keys - https://dashboard.plaid.com/account/keys
