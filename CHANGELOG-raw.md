@@ -14,6 +14,7 @@ New
 
 Changes
 ~~~~~~~
+- Move code to dash_charts package. [Kyle King]
 - Cleanup plaid display code. [Kyle King]
 - Add simple profile page. [Kyle King]
 - Prep for pfe architecture. [Kyle King]
