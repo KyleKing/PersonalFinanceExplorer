@@ -1,22 +1,63 @@
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.commitizen]
+name = "cz_legacy"
+change_type_order = [
+    "BREAKING CHANGE",
+    "Feat",
+    "Fix",
+    "Refactor",
+    "Perf",
+    "New (Old)",
+    "Change (Old)",
+    "Fix (Old)",
+]
+version = "0.0.1a0"
+tag_format = "2021.$version"
+version_files = ["pyproject.toml", "pfe/__init__.py", "appveyor.yml"]
+
+[tool.commitizen.cz_legacy_map]
+Chg = "Change (Old)"
+Fix = "Fix (Old)"
+New = "New (Old)"
+
 [tool.poetry]
 name = "pfe"
-version = "0.0.0"
-description = "Personal Finances Explorer"
-authors = ["Kyle King <https://github.com/KyleKing>"]
-repository = "https://github.com/KyleKing/PersonalFinanceExplorer"
+version = "0.0.1a0"
+description = "Personal Finances Explorer in Python"
 license = "MIT"
+authors = ["Kyle King <dev.act.kyle@gmail.com>"]
+maintainers = []
+repository = "https://github.com/kyleking/PersonalFinancesExplorer"
+documentation = "https://github.com/kyleking/PersonalFinancesExplorer/docs"
+readme = "docs/README.md"
+include = ["LICENSE.md"]
 
 [tool.poetry.dependencies]
-python = "^3.7, !=3.8"
-apsw-wheels = "*"
-dash_charts = {git = "https://github.com/KyleKing/dash_charts.git", branch = "master"}
-plaid-python = "*"
-plaidash = "*"
+python = "^3.8"
+# apsw-wheels = "*"
+# plaid-python = "*"
+# plaidash = "*"
 
-[tool.poetry.dev-dependencies]
-dash = {extras = ["testing"], version = "*, ^1.11"}
-dash_dev = {git = "https://github.com/KyleKing/dash_dev.git"}
+[tool.poetry.dependencies.calcipy]
+git = "https://github.com/kyleking/calcipy.git"
+branch = "dev/development"
+rev = "355bb6c"  # Always pin to a commit
+develop = true  # Optional: will reinstall each time
 
-[build-system]
-requires = ["poetry>=1.0"]
-build-backend = "poetry.masonry.api"
+[tool.poetry.dev-dependencies.calcipy]
+git = "https://github.com/kyleking/calcipy.git"
+branch = "dev/development"
+extras = [ "dev", "lint", "test",]
+
+[tool.poetry.dependencies.dash_charts]
+git = "https://github.com/KyleKing/dash_charts.git"
+branch = "main"
+rev = "adfd6b5"  # Always pin to a commit
+develop = true  # Optional: will reinstall each time
+
+[tool.poetry.dev-dependencies.dash]
+extras = [ "testing",]
+version = "*, ^1.19"
